@@ -1,6 +1,6 @@
 {
   "timestamp": "YYYY-MM-DD HH:mm:ssZ",
-  "level": "off",
+  "level": "info",
   "levels": {
     "[all]": "INFO",
     "category1": "ERROR",
