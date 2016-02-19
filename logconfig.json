@@ -1,0 +1,9 @@
+{
+  "timestamp": "YYYY-MM-DD HH:mm:ssZ",
+  "level": "off",
+  "levels": {
+    "[all]": "INFO",
+    "category1": "ERROR",
+    "category2": "DEBUG"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "consolelogger",
+  "version": "1.0.0",
+  "description": "A simple and flexible buffered console logger",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raythree/consolelogger.git"
+  },
+  "keywords": [
+    "logger",
+    "logging",
+    "console"
+  ],
+  "author": "Bill Walker <bill@ray3.io> (http://ray3.io)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raythree/consolelogger/issues"
+  },
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "homepage": "https://github.com/raythree/consolelogger#readme",
+  "dependencies": {
+    "log-buffer": "0.0.3",
+    "speed-date": "^0.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5"
+  }
+}
