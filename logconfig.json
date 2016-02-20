@@ -1,5 +1,5 @@
 {
-  "timestamp": "YYYY-MM-DD HH:mm:ssZ",
+  "dateFormat": "YYYY-MM-DD HH:mm:ssZ",
   "level": "info",
   "levels": {
     "[all]": "INFO",
