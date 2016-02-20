@@ -56,7 +56,6 @@ describe('console logger tests', function () {
       }
     })
     var log = logger.getLogger()
-    assert(log.category === '')
     assert(log.getLevel() === 'info')
 
     log = logger.getLogger('category1')
@@ -66,6 +65,143 @@ describe('console logger tests', function () {
     assert(log.getLevel() === 'error')
 
     log = logger.getLogger('notconfigured')
-    assert(log.getLevel() === 'info')    
+    assert(log.getLevel() === 'info')
   })
+
+  it('should change levels correctly', function () {
+    logger.configure({
+      level: 'info',
+      levels: {
+        category1: 'debug',
+        category2: 'error',
+        category3: 'off'
+      }
+    })
+    var log = logger.getLogger()
+    assert(log.getLevel() === 'info')
+
+    log1 = logger.getLogger('category1')
+    assert(log1.getLevel() === 'debug')
+
+    log2 = logger.getLogger('category2')
+    assert(log2.getLevel() === 'error')
+
+    log3 = logger.getLogger('category3')
+    assert(log3.getLevel() === 'off')
+
+    logger.configure({
+      level: 'warn',
+      levels: {
+        category1: 'error',
+        category2: 'off',
+      }
+    })
+
+    assert(log.getLevel() === 'warn')
+    assert(log1.getLevel() === 'error')
+    assert(log2.getLevel() === 'off')
+    assert(log3.getLevel() === 'warn')
+    assert(logger.getLogger('new').getLevel() === 'warn')
+    assert(logger.getLogger('category1').getLevel() === 'error')
+  })
+
+  it('should enable and disable default logger on level', function () {
+    var log = logger.getLogger()
+
+    logger.configure({level: 'off'})
+    assert(!log.isFatalEnabled())
+    assert(!log.isErrorEnabled())
+    assert(!log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'fatal'})
+    assert(log.isFatalEnabled())
+    assert(!log.isErrorEnabled())
+    assert(!log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'error'})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(!log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'warn'})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'info'})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'debug'})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(log.isInfoEnabled())
+    assert(log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({level: 'trace'})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(log.isInfoEnabled())
+    assert(log.isDebugEnabled())
+    assert(log.isTraceEnabled())
+  })
+
+  it('should work with the ALL category', function () {
+    var log1 = logger.getLogger('category1'),
+        log2 = logger.getLogger('category2'),
+        log3 = logger.getLogger('category3'),
+        log = logger.getLogger()
+
+    logger.configure({levels: {'[all]': 'off'}})
+    assert(!log.isFatalEnabled())
+    assert(!log.isErrorEnabled())
+    assert(!log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({levels: {'[all]': 'fatal'}})
+    assert(log.isFatalEnabled())
+    assert(!log.isErrorEnabled())
+    assert(!log.isWarnEnabled())
+    assert(!log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({levels: {'[all]': 'info'}})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(log.isInfoEnabled())
+    assert(!log.isDebugEnabled())
+    assert(!log.isTraceEnabled())
+
+    logger.configure({levels: {'[all]': 'trace'}})
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(log.isWarnEnabled())
+    assert(log.isInfoEnabled())
+    assert(log.isDebugEnabled())
+    assert(log.isTraceEnabled())
+  })
+
 })
