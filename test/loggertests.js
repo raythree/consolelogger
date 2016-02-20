@@ -166,10 +166,7 @@ describe('console logger tests', function () {
   })
 
   it('should work with the ALL category', function () {
-    var log1 = logger.getLogger('category1'),
-        log2 = logger.getLogger('category2'),
-        log3 = logger.getLogger('category3'),
-        log = logger.getLogger()
+    var log = logger.getLogger()
 
     logger.configure({levels: {'[all]': 'off'}})
     assert(!log.isFatalEnabled())
@@ -202,6 +199,40 @@ describe('console logger tests', function () {
     assert(log.isInfoEnabled())
     assert(log.isDebugEnabled())
     assert(log.isTraceEnabled())
+  })
+
+  it('should work with the specific categories', function () {
+    var log1 = logger.getLogger('category1'),
+        log2 = logger.getLogger('category2'),
+        log3 = logger.getLogger('category3'),
+        log = logger.getLogger()
+
+    logger.configure({levels: {
+        '[all]': 'error',
+        category1: 'debug'
+      }
+    })
+    assert(log.isFatalEnabled())
+    assert(log.isErrorEnabled())
+    assert(!log.isInfoEnabled())
+
+    assert(log1.isDebugEnabled())
+    assert(!log2.isInfoEnabled())
+    assert(!log2.isInfoEnabled())
+    assert(log3.isErrorEnabled())
+
+    logger.configure({levels: {
+        '[all]': 'off',
+        category1: 'debug',
+        category2: 'error'
+      }
+    })
+
+    assert(log1.isDebugEnabled())
+    assert(!log2.isInfoEnabled())
+    assert(log2.isErrorEnabled())
+
+    assert(!log.isFatalEnabled())
   })
 
 })
