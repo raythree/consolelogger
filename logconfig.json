@@ -1,6 +1,7 @@
 {
   "dateFormat": "YYYY-MM-DD HH:mm:ssZ",
-  "level": "info",
+  "level": "error",
+  "watch": true,
   "levels": {
     "[all]": "INFO",
     "category1": "ERROR",

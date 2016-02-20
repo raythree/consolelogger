@@ -11,3 +11,6 @@ log.trace('should not show up')
 log.debug('a debug message')
 log.info('an info message')
 log.error('Hello %s', 'world')
+
+log = logger.getLogger()
+log.info('Message using default logger')

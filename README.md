@@ -1,32 +1,30 @@
 # Console Logger
 
-A simple, light-weight and and fast console logger that uses [log-buffer](https://github.com/bahamas10/node-log-buffer) and [speed-date](https://github.com/gosquared/speed-date) for increased speed. Ideal for production if you're using PM2 to manage logs via `stdout` you don't need log file management or other appenders.
+A simple, light-weight and fast console logger that uses [log-buffer](https://github.com/bahamas10/node-log-buffer) and [speed-date](https://github.com/gosquared/speed-date) for increased speed. Ideal for production if you're using PM2 to manage logs via `stdout` and you don't need log file management or other appenders. Category logging was designed to be the same as [log4js-node](https://github.com/nomiddlename/log4js-node).
 
 Features:
 
 * Simple configuration via options or an external JSON file
 * Option to watch the external config file for dynamic re-configuration
 * Uses same levels and ability to use categories as [log4js-node](https://github.com/nomiddlename/log4js-node)
-* Configurable timestamps that can be turned off in production if using PM2 to generate timestamps.
+* Configurable timestamps that can be turned off in production if using PM2 to generate timestamps (this increases performance significantly).
 
 ## Usage:  
 
 ```
 var logger = require('consolelogger')
 
-// use default logger
-logger('Hello from default logger') // default level INFO
-logger('debug', 'A debug message')
+// default level is INFO
 
-// use a category logger
-var log = logger.getLog('App')
-log.info('Hello %s', 'World')
+var log = logger.getLog()  // default logger
+var app = logger.getLog('App')  // App category logger
 
+app.info('Hello %s', 'World')
+log.info('A message from the default logger')
 
 // output
-2/17/2016 8:30:33 AM: INFO: Hello from default logger
-2/17/2016 8:30:33 AM: DEBUG: A debug message
 2/17/2016 8:30:33 AM: INFO: App: Hello World
+2/17/2016 8:30:33 AM: INFO: A message from the default logger
 ```
 
 ## Configuration Options
