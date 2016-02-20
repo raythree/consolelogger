@@ -47,7 +47,7 @@ describe('console logger tests', function () {
     assert(logger.getCategoryLevel('notfound') === 'info')  // default
   })
 
-  it('should return the default logger', function () {
+  it('should get loggers with the right level', function () {
     logger.configure({
       level: 'info',
       levels: {
@@ -55,6 +55,17 @@ describe('console logger tests', function () {
         category2: 'error'
       }
     })
-    logger.getLogger()
+    var log = logger.getLogger()
+    assert(log.category === '')
+    assert(log.getLevel() === 'info')
+
+    log = logger.getLogger('category1')
+    assert(log.getLevel() === 'debug')
+
+    log = logger.getLogger('category2')
+    assert(log.getLevel() === 'error')
+
+    log = logger.getLogger('notconfigured')
+    assert(log.getLevel() === 'info')    
   })
 })
