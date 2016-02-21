@@ -1,6 +1,6 @@
 # Console Logger
 
-A simple, light-weight and fast console logger that uses [log-buffer](https://github.com/bahamas10/node-log-buffer) and [speed-date](https://github.com/gosquared/speed-date) for increased speed. Ideal for production if you're using PM2 to manage logs via `stdout` and you don't need log file management or other appenders. Category logging was designed to be the same as [log4js-node](https://github.com/nomiddlename/log4js-node).
+A simple, light-weight and fast console logger that uses [speed-date](https://github.com/gosquared/speed-date) for fast timestamps. Ideal for production if you're using PM2 to manage logs via `stdout` and you don't need log file management or other appenders. Category logging was designed to be the same as [log4js-node](https://github.com/nomiddlename/log4js-node).
 
 Features:
 
@@ -29,16 +29,15 @@ log.info('A message from the default logger')
 
 ## Configuration Options
 
-The logger can be configured via options passed to the `config` method. If you skip the config step but the logger finds the file `./logconfig.json` it will read the configuration from there. If not found everything will default to DEBUG if `NODE_ENV` is set to development or ERROR if `NODE_ENV` is set to production. You can also pass a configuration object or the full path to a logging config file. If either the default or specified configuration file is used, a `watch` option can be enabled to dynamically change levels.
-
-All arguments passed to the logging methods are passed to console.log. If the first argument is a string the optinal timestamp, level, and logger name will be prepended.
+The logger can be configured via options passed to the `config` method. If you skip the config step but the logger finds the file `./logconfig.json` it will read the configuration from there. If not configured the level defaults to INFO for all loggers. You can also pass a configuration object or the full path to a logging config file. If either the default or specified configuration file is used, a `watch` option can be enabled to dynamically change levels. If NODE_ENV is production the configuration file is checked for changes every `watchInterval` seconds (default is 60, minimum is 10). If in development mode `fs.watch` is used.
 
 ### Options
 
-* `level` The log level for all loggers. Defaults to ERROR in production and DEBUG in development.
-* `levels` Allows per-category levels to be specified just as in log4js-node. Note that the "[all]" category is supported, but this is the exact same thing as setting the `level` option above.
+* `level` The log level for all loggers. Defaults to INFO. **NOTE:** that level strings are case insensitive but are always printed uppercase.
+* `levels` Allows per-category levels to be specified just as in log4js-node. Note that the "[all]" category is supported to be compatible with Log4js, but this is the exact same thing as setting the `level` option above. If you set both, the `[all]` category will override.
 * `watch` If configured via an external JSON file you can set watch to `true` to watch for changes and dynamically change the configuration. Default is `false`.
-* `timeformat` Optional function to format timestamps. This is passed to `speed-date`. To disable timestamps (for example if using PM2 to generate log timestamps) set this option to null. If not explicitely set the default timestamp format will be `YYYY-MM-DD HH:mm:ssZ`.
+* `watchInterval` The time in seconds to check for configuration file changes if `watch` is `true`. Defaults to 60 seconds. The minimum value that supported is 10 seconds.
+* `dateFormat` Optional function to format timestamps. This is passed to `speed-date`. To disable timestamps (for example if using PM2 to generate log timestamps) set this option to null. If not explicitely set the default timestamp format will be `YYYY-MM-DD HH:mm:ssZ`.
 
 Example:
 
