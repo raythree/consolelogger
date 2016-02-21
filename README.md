@@ -11,20 +11,38 @@ Features:
 
 ## Usage:  
 
+Directly using the default logger:
+
+```
+var log = require('consolelogger')
+
+log.info('Hello %s', 'World')
+
+// output - default level is info
+2/17/2016 8:30:33 AM: INFO: Hello World
+```
+
+Using category loggers:
+
 ```
 var logger = require('consolelogger')
 
-// default level is INFO
+logger.configure({level: 'debug'})
 
 var log = logger.getLog()  // default logger
-var app = logger.getLog('App')  // App category logger
+var log1 = logger.getLog('category1')  // category loggers
+var log2 = logger.getLog('category2')  
+var log3 = logger.getLog('category3')  
 
-app.info('Hello %s', 'World')
-log.info('A message from the default logger')
+log.info('Hello %s', 'World')
+log1.info('An info message from category1')
+log2.debug('A debug message from category2')
+log3.trace('A trace message from category3 will not be logged')
 
 // output
-2/17/2016 8:30:33 AM: INFO: App: Hello World
-2/17/2016 8:30:33 AM: INFO: A message from the default logger
+2/17/2016 8:30:33 AM: INFO: Hello World
+2/17/2016 8:30:33 AM: INFO: category1: An info message from category1
+2/17/2016 8:30:33 AM: DEBUG: category2: A debug message from category2
 ```
 
 ## Configuration Options
