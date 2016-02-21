@@ -69,23 +69,24 @@ logger.config({
 		category2: 'info',
 		category3: 'error'
 	},
-	timestamp: 'YYYY-MM-DD HH:mm:ss',
+	dateFormat: 'YYYY-MM-DD HH:mm:ssZ',
 	watch: false	
 })
 
+// ... enable watching, using [all] category rather than level, remove timezone offset:
+
+logger.config({
+	levels: {
+		'[all]': 'INFO'
+		category1: 'DEBUG',
+		category2: 'ERROR',
+		category3: 'TRACE'
+	},
+	dateFormat: 'YYYY-MM-DD HH:mm:ss',
+	watch: true,
+	watchInterval: 10,	
+})
 ```
-### Logging
-Note that the default logger is directly available, so that these are the same:
-
-```
-var logger = require('consolelogger')
-logger('hello')
-
-logger.getLogger().info('hello')
-```
-
-All arguments passed are passed to console.log. If the first argument is a `string` the optional  
-
 
 
 
