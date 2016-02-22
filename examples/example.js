@@ -7,6 +7,9 @@ console.log(log.isTraceEnabled())
 console.log(log.isDebugEnabled())
 console.log(log.isInfoEnabled())
 
+logger.debug('A DEBUG message using logger directly')
+logger.info('An INFO message using logger directly')
+
 log.trace('should not show up')
 log.debug('a debug message')
 log.info('an info message')
