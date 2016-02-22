@@ -84,7 +84,7 @@ logger.config({
 	},
 	dateFormat: 'YYYY-MM-DD HH:mm:ss',
 	watch: true,
-	watchInterval: 10,	
+	watchInterval: 10	
 })
 ```
 
