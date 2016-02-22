@@ -1,11 +1,8 @@
 {
   "name": "consolelogger",
   "version": "1.0.0",
-  "description": "A simple and flexible buffered console logger",
+  "description": "A fast and light weight console logger",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raythree/consolelogger.git"
@@ -25,7 +22,6 @@
   },
   "homepage": "https://github.com/raythree/consolelogger#readme",
   "dependencies": {
-    "log-buffer": "0.0.3",
     "speed-date": "^0.2.1"
   },
   "devDependencies": {
