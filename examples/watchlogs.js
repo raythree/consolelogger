@@ -2,6 +2,7 @@
 // run node watchlogs while editing the config file
 //
 var logger = require('../lib/logger') // require('consolelogger')
+logger.configure('./myconfig.json')
 
 var log = logger.getLogger(),
     log1 = logger.getLogger('category1'),
