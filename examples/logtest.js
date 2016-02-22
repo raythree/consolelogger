@@ -4,7 +4,7 @@
 //
 var logger = require('./lib/logger') // require('consolelogger')
 
-logger.configure({level:'info', dateFormat: null})
+logger.configure({level:'info'})
 var log = logger.getLogger()
 
 console.time('write')

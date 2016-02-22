@@ -69,6 +69,37 @@ logger.getLogger().info('hello')
 
 All arguments passed are passed to console.log. If the first argument is a `string` the optional  
 
+### Performance
+Running a test to log 1 million lines:
+
+```
+[~] $ time node logtest.js | dd > out
+
+1045+707624 records in
+204861+1 records out
+104888910 bytes transferred in 6.096642 secs (17204374 bytes/sec)
+
+real	0m6.111s
+user	0m5.286s
+sys	0m2.640s
+
+```
+
+Running the same test using log4js with single console appender:
+
+```
+[~] $ time node logtest.js | dd > out
+
+540+993360 records in
+241970+1 records out
+123888911 bytes transferred in 19.298922 secs (6419473 bytes/sec)
+
+real	0m19.318s
+user	0m18.282s
+sys	0m3.513s
+```
+
+
 
 
 
