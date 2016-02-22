@@ -1,4 +1,4 @@
-var logger = require('./lib/logger')
+var logger = require('../lib/logger') // require('consolelogger')
 
 logger.configure({level:'debug'})
 var log = logger.getLogger('example')

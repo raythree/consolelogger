@@ -1,8 +1,8 @@
 //
 // Run this as:
-// node perftest > out 
+// time node logtest | dd > /dev/null 
 //
-var logger = require('./lib/logger') // require('consolelogger')
+var logger = require('../lib/logger') // require('consolelogger')
 
 logger.configure({level:'info'})
 var log = logger.getLogger()
