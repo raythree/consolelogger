@@ -8,6 +8,7 @@ Features:
 * Option to watch the external config file for dynamic re-configuration
 * Uses same levels and ability to use categories as [log4js-node](https://github.com/nomiddlename/log4js-node)
 * Configurable timestamps that can be turned off in production if using PM2 to generate timestamps (this increases performance significantly).
+* Works in browser for selectively debugging via the console.
 
 ## Usage:  
 
@@ -44,6 +45,7 @@ log3.trace('A trace message from category3 will not be logged')
 2/17/2016 8:30:33 AM: INFO: category1: An info message from category1
 2/17/2016 8:30:33 AM: DEBUG: category2: A debug message from category2
 ```
+**NOTE:** If using in the browser for console debugging all file configuration is disabled, just pass logging options to the `configure` method.
 
 ## Configuration Options
 
