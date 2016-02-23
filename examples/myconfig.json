@@ -1,10 +1,9 @@
 {
-  "dateFormat": "YYYY-MM-DD HH:mm:ssZ",
-  "level": "error",
+  "level": "info",
   "watch": true,
   "levels": {
-    "[all]": "INFO",
-    "category1": "DEBUG",
-    "category2": "DEBUG"
+    "category1": "fatal",
+    "category2": "error",
+    "category3": "off"
   }
 }
