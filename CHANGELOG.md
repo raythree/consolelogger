@@ -1,3 +1,6 @@
+### [1.0.4]
+* Same for let 
+
 ### [1.0.3]
 * Changed const to var to avoid needing to run babelify on files in node_modules
 
