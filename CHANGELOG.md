@@ -1,3 +1,6 @@
+### [1.0.5]
+* Changed missed const to var
+
 ### [1.0.4]
 * Same for let 
 
