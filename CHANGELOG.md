@@ -1,3 +1,6 @@
+### [1.0.3]
+* Changed const to var to avoid needing to run babelify on files in node_modules
+
 ### [1.0.2]
 * Fixed bug where existing loggers were not being updated on config changes when no levels categories were present.
 
