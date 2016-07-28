@@ -1,6 +1,6 @@
 {
   "name": "simple-console-logger",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A fast and light weight console logger",
   "main": "index.js",
   "repository": {

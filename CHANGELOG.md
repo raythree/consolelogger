@@ -1,3 +1,6 @@
+### [1.0.7]
+* Use dynamic loading of fs when running on node. This avoid Webpack trying to load it.
+
 ### [1.0.6]
 * Changed isNode detection. Other mechanism did now work when bundled with Webpack.
 
