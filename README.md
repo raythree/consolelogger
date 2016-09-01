@@ -15,9 +15,9 @@ Features:
 Directly using the default logger:
 
 ```
-var log = require('consolelogger')
+var Logger = require('simple-console-logger');
 
-log.info('Hello %s', 'World')
+Logger.info('Hello %s', 'World')
 
 // output - default level is info
 2/17/2016 8:30:33 AM: INFO: Hello World
@@ -26,14 +26,14 @@ log.info('Hello %s', 'World')
 Using category loggers:
 
 ```
-var logger = require('consolelogger')
+var Logger = require('simple-console-logger');
 
-logger.configure({level: 'debug'})
+Logger.configure({level: 'debug'})
 
-var log = logger.getLog()  // default logger
-var log1 = logger.getLog('category1')  // category loggers
-var log2 = logger.getLog('category2')  
-var log3 = logger.getLog('category3')  
+var log = Logger.getLogger()  // default logger
+var log1 = Logger.getLogger('category1')  // category loggers
+var log2 = Logger.getLogger('category2')  
+var log3 = Logger.getLogger('category3')  
 
 log.info('Hello %s', 'World')
 log1.info('An info message from category1')
@@ -62,9 +62,9 @@ The logger can be configured via options passed to the `config` method. If you s
 Example:
 
 ```
-var logger = require('consolelogger')
+var Logger = require('simple-console-logger')
 
-logger.config({
+Logger.config({
 	level: 'info', // default level
 	levels: {
 		category1: 'debug',
@@ -75,9 +75,11 @@ logger.config({
 	watch: false
 })
 
-// ... enable watching, using [all] category rather than level, remove timezone offset:
+// Enable watching, using [all] category rather than level, remove timezone offset
 
-logger.config({
+var Logger = require('simple-console-logger')
+
+Logger.config({
 	levels: {
 		'[all]': 'INFO'
 		category1: 'DEBUG',
