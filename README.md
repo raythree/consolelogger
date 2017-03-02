@@ -49,6 +49,18 @@ log3.trace('A trace message from category3 will not be logged')
 
 ## Configuration Options
 
+###For Version 2.x
+Due to issues with running in the browser and Webpack/dynamic requires, the logger no longer requires the ```fs``` module and does not automatically look for a default logconfig.json file. In order to configure the logger from an external file, do so like this:
+
+```
+const logger = require('simple-console-logger');
+const fs = require('fs');
+
+logger.configure('./logconfig.json', fs);
+```
+
+###For Version 1.x
+
 The logger can be configured via options passed to the `config` method. If you skip the config step but the logger finds the file `./logconfig.json` it will read the configuration from there. If not configured the level defaults to INFO for all loggers. You can also pass a configuration object or the full path to a logging config file. If either the default or specified configuration file is used, a `watch` option can be enabled to dynamically change levels. If NODE_ENV is production the configuration file is checked for changes every `watchInterval` seconds (default is 60, minimum is 10). If in development mode `fs.watch` is used.
 
 ### Options

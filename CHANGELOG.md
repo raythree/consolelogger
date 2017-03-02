@@ -1,3 +1,6 @@
+### [2.0]
+* Removed automatic of require due to problems with running in browser and using Webpack on the client.
+
 ### [1.0.7]
 * Use dynamic loading of fs when running on node. This avoid Webpack trying to load it.
 
